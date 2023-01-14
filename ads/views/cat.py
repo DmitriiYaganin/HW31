@@ -4,7 +4,6 @@ from django.http import JsonResponse
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
-
 from ads.models import Category
 
 
@@ -16,11 +15,6 @@ class CatListView(ListView):
         super().get(request, *args, **kwargs)
         return JsonResponse(data=[{"id": category.pk, "name": category.name} for category in self.object_list],
                             safe=False)
-
-        # cat_list = Category.objects.all()
-        # return JsonResponse([{"id": cat.pk,
-        #                       "name": cat.name,
-        #                       } for cat in cat_list], safe=False)
 
 
 class CategoryDetailView(DetailView):
